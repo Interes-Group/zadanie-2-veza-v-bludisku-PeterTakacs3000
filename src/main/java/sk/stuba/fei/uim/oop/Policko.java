@@ -2,19 +2,17 @@ package sk.stuba.fei.uim.oop;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+
 @Data
 public class Policko {
-    private int x;
-    private int y;
+    private int id;
     private boolean isWall;
-    private Policko topNeighbour = null;
-    private Policko bottomNeighbour = null;
-    private Policko leftNeighbour = null;
-    private Policko rightNeighbour = null;
+    private boolean isSearched;
+    private boolean isBorder;
+    private ArrayList<Policko> neighbours = new ArrayList<>();
+    private ArrayList<ArrayList<Policko>> availableNeighbours = new ArrayList<ArrayList<Policko>>();
 
-    public Policko(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
+
 
 }

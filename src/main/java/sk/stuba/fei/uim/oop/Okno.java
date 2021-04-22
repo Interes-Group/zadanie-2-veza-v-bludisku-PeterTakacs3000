@@ -9,15 +9,17 @@ public class Okno extends JFrame {
         super();
         this.setTitle("Veza v bludisku by Peter Takacs 104604");
         this.setVisible(true);
-        this.setSize(430,330);
+        this.setSize(500,400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         HraciaPlocha plocha = new HraciaPlocha();
         plocha.vytvorBludisko();
-        ArrayList bludisko = plocha.getBludisko();
+        plocha.inicializujSusedov();
+        ArrayList<Policko> bludisko = plocha.getBludisko();
+        plocha.vytvorCesty(bludisko.get(21));
 
         MojePlatno platno = new MojePlatno(bludisko);
-        platno.setSize(new Dimension(330, 330));
+        platno.setSize(new Dimension(400, 400));
 
         this.add(platno);
         this.pack();
