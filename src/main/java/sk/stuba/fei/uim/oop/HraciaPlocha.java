@@ -17,6 +17,8 @@ public class HraciaPlocha {
         for(int x = 0; x < 20; x++) {
             for(int y = 0; y < 20; y++) {
                 Policko novePolicko = new Policko();
+                novePolicko.setX(x*20);
+                novePolicko.setY(y*19);
                 novePolicko.setId(idPolicka);
                 novePolicko.setWall(true);
                 novePolicko.setSearched(false);

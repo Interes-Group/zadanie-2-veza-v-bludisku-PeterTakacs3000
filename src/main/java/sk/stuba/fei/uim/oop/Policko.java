@@ -6,7 +6,11 @@ import java.util.ArrayList;
 
 @Data
 public class Policko {
+    private int x;
+    private int y;
     private int id;
+    private boolean isReachable;
+    private boolean isSelected;
     private boolean isWall;
     private boolean isPlayer;
     private boolean isFinish;

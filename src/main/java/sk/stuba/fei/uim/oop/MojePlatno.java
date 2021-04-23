@@ -2,9 +2,12 @@ package sk.stuba.fei.uim.oop;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-public class MojePlatno extends JPanel {
+public class MojePlatno extends JPanel implements MouseListener, MouseMotionListener {
 
     private ArrayList<Policko> hraciaPlocha;
 
@@ -20,9 +23,7 @@ public class MojePlatno extends JPanel {
         for(int x = 0; x < 20; x++) {
             for (int y = 0; y < 20; y++) {
                 Policko aktualnePolicko = hraciaPlocha.get(index);
-                var policko = new JLabel("*");
-                //policko.setBounds(x * 20,y * 20,20,20);
-
+                var policko = new JLabel();
 
                 if (aktualnePolicko.isWall()) {
                     policko.setBackground(Color.BLACK);
@@ -33,7 +34,8 @@ public class MojePlatno extends JPanel {
                 else {
                     policko.setBackground(Color.WHITE);
                 }
-
+                policko.addMouseListener(this);
+                policko.addMouseMotionListener(this);
                 policko.setOpaque(true);
                 policko.setVisible(true);
                 this.add(policko);
@@ -43,30 +45,38 @@ public class MojePlatno extends JPanel {
         }
     }
 
-
-/*
     @Override
-    public void paint(Graphics g) {
-        int index = 0;
-        this.setVisible(true);
-        this.setSize(400,400);
-        for(int x = 0; x < 20; x++) {
-            for (int y = 0; y < 20; y++) {
-                Policko aktualnePolicko = hraciaPlocha.get(index);
-                if (aktualnePolicko.isWall()) {
-                    g.setColor(Color.BLACK);
-                }
-                else if(aktualnePolicko.isFinish()){
-                    g.setColor(Color.RED);
-                }
-                else {
-                    g.setColor(Color.WHITE);
-                }
-                g.fillRect(x * 20, y * 20, 20, 20);
-                index++;
+    public void mouseClicked(MouseEvent e) {
 
-            }
-        }
     }
-    */
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
 }
