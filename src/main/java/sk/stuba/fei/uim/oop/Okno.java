@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Okno extends JFrame implements KeyListener, ActionListener, MouseListener, MouseMotionListener {
 
-    private volatile boolean koniecHry = false;
+    private boolean hracVybrany = false;
     private int pocitadloVyhier = 0;
     private Random rand = new Random();
     private ArrayList<Policko> bludisko;
@@ -56,7 +56,6 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
             bludiskoPanel.setVisible(true);
             bludiskoPanel.setSize(400, 400);
             bludiskoPanel.setLayout(new GridLayout(20, 20));
-            bludiskoPanel.addMouseListener(this);
 
             for (int x = 0; x < 20; x++) {
                 for (int y = 0; y < 20; y++) {
@@ -75,7 +74,7 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                     } else {
                         policko.setBackground(Color.WHITE);
                     }
-
+                    policko.addMouseListener(this);
                     policko.addMouseMotionListener(this);
                     policko.setOpaque(true);
                     policko.setVisible(true);
@@ -247,43 +246,10 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int mouseX = e.getX();
-        int mouseY = e.getY();
-        System.out.println(mouseX + " " + mouseY);
-        System.out.println(this.hrac.getX() + " " + this.hrac.getY());
-        if((mouseX > this.hrac.getX()) && (mouseX < this.hrac.getX() + 20)){
-            if((mouseY > this.hrac.getY()) && (mouseY < this.hrac.getY() + 20)){
-                this.hrac.setBackground(Color.YELLOW);
-            }
-
-            /*
-            Policko aktualnePolicko = this.bludisko.get(this.poziciaHraca);
-            int aktualnaPozicia = poziciaHraca;
-            while (!aktualnePolicko.isWall()){
-                aktualnePolicko = this.bludisko.get(aktualnaPozicia);
-                aktualnePolicko.setReachable(true);
-                aktualnaPozicia++;
-            }
-            aktualnaPozicia = poziciaHraca;
-            while (!aktualnePolicko.isWall()){
-                aktualnePolicko = this.bludisko.get(aktualnaPozicia);
-                aktualnePolicko.setReachable(true);
-                aktualnaPozicia--;
-            }
-            aktualnaPozicia = poziciaHraca;
-            while (!aktualnePolicko.isWall()){
-                aktualnePolicko = this.bludisko.get(aktualnaPozicia);
-                aktualnePolicko.setReachable(true);
-                aktualnaPozicia += 20;
-            }
-            aktualnaPozicia = poziciaHraca;
-            while (!aktualnePolicko.isWall()){
-                aktualnePolicko = this.bludisko.get(aktualnaPozicia);
-                aktualnePolicko.setReachable(true);
-                aktualnaPozicia -= 20;
-            }
-
-             */
+        if(e.getSource().equals(this.hrac)){
+            this.hrac.setBackground(Color.YELLOW);
+            this.hrac.setText("Err");
+            this.hracVybrany = true;
         }
     }
 
