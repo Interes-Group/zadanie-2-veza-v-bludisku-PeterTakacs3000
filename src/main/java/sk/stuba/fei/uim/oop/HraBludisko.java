@@ -2,7 +2,7 @@ package sk.stuba.fei.uim.oop;
 
 public class HraBludisko {
     public void hraj(){
-        Okno okno = new Okno();
+        Okno okno = new Okno(0);
 
     }
 }

@@ -26,8 +26,9 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
 
 
 
-    public Okno(){
+    public Okno(int pocetVyhier){
         super();
+            this.pocitadloVyhier = pocetVyhier;
 
             this.setTitle("Veza v bludisku by Peter Takacs 104604");
             this.setVisible(true);
@@ -95,6 +96,7 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
             downButton.addActionListener(this);
             leftButton.addActionListener(this);
             rightButton.addActionListener(this);
+            resetButton.addActionListener(this);
             uptButton.setFocusable(false);
             downButton.setFocusable(false);
             leftButton.setFocusable(false);
@@ -129,7 +131,7 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 if(this.poziciaHraca == this.poziciaCiela){
                     pocitadloVyhier++;
                     this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
-                    this.koniecHry = true;
+                    Okno okno = new Okno(pocitadloVyhier);
                 }
             }
         }
@@ -142,7 +144,7 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 if(poziciaHraca == poziciaCiela){
                     pocitadloVyhier++;
                     this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
-                    this.koniecHry = true;
+                    Okno okno = new Okno(pocitadloVyhier);
                 }
             }
         }
@@ -155,7 +157,7 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 if(poziciaHraca == poziciaCiela){
                     pocitadloVyhier++;
                     this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
-                    this.koniecHry = true;
+                    Okno okno = new Okno(pocitadloVyhier);
                 }
             }
         }
@@ -168,7 +170,7 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 if(poziciaHraca == poziciaCiela){
                     pocitadloVyhier++;
                     this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
-                    this.koniecHry = true;
+                    Okno okno = new Okno(pocitadloVyhier);
                 }
             }
         }
@@ -192,6 +194,11 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 bludisko.get(poziciaHraca - 20).setPlayer(true);
                 bludisko.get(poziciaHraca).setPlayer(false);
                 poziciaHraca -= 20;
+                if(poziciaHraca == poziciaCiela){
+                    pocitadloVyhier++;
+                    this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
+                    Okno okno = new Okno(pocitadloVyhier);
+                }
             }
         }
         else if(e.getSource() == this.downButton){
@@ -200,6 +207,11 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 bludisko.get(poziciaHraca + 20).setPlayer(true);
                 bludisko.get(poziciaHraca).setPlayer(false);
                 poziciaHraca += 20;
+                if(poziciaHraca == poziciaCiela){
+                    pocitadloVyhier++;
+                    this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
+                    Okno okno = new Okno(pocitadloVyhier);
+                }
             }
         }
         else if(e.getSource() == this.leftButton){
@@ -208,6 +220,11 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 bludisko.get(poziciaHraca - 1).setPlayer(true);
                 bludisko.get(poziciaHraca).setPlayer(false);
                 poziciaHraca -= 1;
+                if(poziciaHraca == poziciaCiela){
+                    pocitadloVyhier++;
+                    this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
+                    Okno okno = new Okno(pocitadloVyhier);
+                }
             }
         }
         else if(e.getSource() == this.rightButton){
@@ -216,7 +233,15 @@ public class Okno extends JFrame implements KeyListener, ActionListener, MouseLi
                 bludisko.get(poziciaHraca + 1).setPlayer(true);
                 bludisko.get(poziciaHraca).setPlayer(false);
                 poziciaHraca += 1;
+                if(poziciaHraca == poziciaCiela){
+                    pocitadloVyhier++;
+                    this.gameCaountLabel.setText("Vyhry: " + this.pocitadloVyhier);
+                    Okno okno = new Okno(pocitadloVyhier);
+                }
             }
+        }
+        else if(e.getSource() == this.resetButton){
+            Okno okno = new Okno(0);
         }
     }
 
