@@ -27,6 +27,7 @@ public class HraciaPlocha {
                 idPolicka++;
             }
         }
+        bludisko.get(21).setPlayer(true);
     }
 
     public void inicializujSusedov(){
@@ -93,10 +94,10 @@ public class HraciaPlocha {
     public void vytvorCesty(Policko aktPolicko){
         Policko sused1 = new Policko();
         Policko sused2 = new Policko();
-        Policko naslPolicko = new Policko();
-        Policko dalsieAktPolicko = new Policko();
+        Policko naslPolicko;
+        Policko dalsieAktPolicko;
         int cisloSuseda = 0;
-        int pocetSusedov = 0;
+        int pocetSusedov;
         int i = 0;
 
         aktPolicko.setSearched(true);
@@ -120,18 +121,6 @@ public class HraciaPlocha {
         naslPolicko = aktPolicko.getAvailableNeighbours().get(cisloSuseda).get(0);
         dalsieAktPolicko = aktPolicko.getAvailableNeighbours().get(cisloSuseda).get(1);
 
-        System.out.println(aktPolicko.getId());
-        System.out.println(aktPolicko.isSearched());
-        for (var item : aktPolicko.getAvailableNeighbours()){
-            for(var itemm : item){
-                System.out.println(itemm.getId());
-            }
-        }
-        System.out.println(naslPolicko.getId());
-        System.out.println(naslPolicko.isSearched());
-        System.out.println(dalsieAktPolicko.getId());
-        System.out.println(dalsieAktPolicko.isSearched());
-        System.out.println("-------------------");
             if (abs(naslPolicko.getId() - aktPolicko.getId()) == 1) {
                 sused1 = this.bludisko.get(naslPolicko.getId() + 20);
                 sused2 = this.bludisko.get(naslPolicko.getId() - 20);
@@ -139,7 +128,7 @@ public class HraciaPlocha {
                 sused1 = this.bludisko.get(naslPolicko.getId() + 1);
                 sused2 = this.bludisko.get(naslPolicko.getId() - 1);
             }
-            while(pocetSusedov != 0) {
+            while(true) {
                 sused1.setSearched(true);
                 sused2.setSearched(true);
                 naslPolicko.setSearched(true);
@@ -172,7 +161,6 @@ public class HraciaPlocha {
                 naslPolicko = aktPolicko.getAvailableNeighbours().get(cisloSuseda).get(0);
                 dalsieAktPolicko = aktPolicko.getAvailableNeighbours().get(cisloSuseda).get(1);
             }
-            return;
 
     }
 }

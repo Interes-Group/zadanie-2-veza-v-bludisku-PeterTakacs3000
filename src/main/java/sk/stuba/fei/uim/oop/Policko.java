@@ -8,10 +8,12 @@ import java.util.ArrayList;
 public class Policko {
     private int id;
     private boolean isWall;
+    private boolean isPlayer;
+    private boolean isFinish;
     private boolean isSearched;
     private boolean isBorder;
     private ArrayList<Policko> neighbours = new ArrayList<>();
-    private ArrayList<ArrayList<Policko>> availableNeighbours = new ArrayList<ArrayList<Policko>>();
+    private ArrayList<ArrayList<Policko>> availableNeighbours = new ArrayList<>();
 
 
 
