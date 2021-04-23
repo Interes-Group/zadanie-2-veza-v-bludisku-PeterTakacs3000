@@ -94,6 +94,10 @@ public class Okno extends JFrame implements KeyListener, ActionListener {
         downButton.addActionListener(this);
         leftButton.addActionListener(this);
         rightButton.addActionListener(this);
+        uptButton.setFocusable(false);
+        downButton.setFocusable(false);
+        leftButton.setFocusable(false);
+        rightButton.setFocusable(false);
 
         panel.add(gameCaountLabel);
         panel.add(uptButton);
