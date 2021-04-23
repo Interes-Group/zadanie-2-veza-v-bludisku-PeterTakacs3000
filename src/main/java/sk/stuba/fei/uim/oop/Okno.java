@@ -6,13 +6,18 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Okno extends JFrame implements KeyListener {
+public class Okno extends JFrame implements KeyListener, ActionListener {
 
     private Random rand = new Random();
     private ArrayList<Policko> bludisko;
     private int poziciaHraca;
     private int poziciaCiela;
     private JLabel hrac;
+    private JButton resetButton = new JButton("Nova hra");
+    private JButton uptButton = new JButton("w");
+    private JButton downButton = new JButton("s");
+    private JButton leftButton = new JButton("a");
+    private JButton rightButton = new JButton("d");
 
     public Okno(){
         super();
@@ -84,15 +89,11 @@ public class Okno extends JFrame implements KeyListener {
 
         var gameCaountLabel = new JLabel("Vyhry: ");
 
-        var resetButton = new JButton("Nova hra");
-        var uptButton = new JButton("w");
-        var downButton = new JButton("s");
-        var leftButton = new JButton("a");
-        var rightButton = new JButton("d");
-        uptButton.addActionListener(new UpButton(this.bludisko, this.poziciaHraca, this.poziciaCiela, this.hrac));
-        downButton.addActionListener(new DownButton(this.bludisko, this.poziciaHraca, this.poziciaCiela, this.hrac));
-        leftButton.addActionListener(new LeftButton(this.bludisko, this.poziciaHraca, this.poziciaCiela, this.hrac));
-        rightButton.addActionListener(new RightButton(this.bludisko, this.poziciaHraca, this.poziciaCiela, this.hrac));
+
+        uptButton.addActionListener(this);
+        downButton.addActionListener(this);
+        leftButton.addActionListener(this);
+        rightButton.addActionListener(this);
 
         panel.add(gameCaountLabel);
         panel.add(uptButton);
@@ -152,6 +153,42 @@ public class Okno extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == this.uptButton){
+            if(!bludisko.get(poziciaHraca - 20).isWall()){
+                this.hrac.setLocation(hrac.getX(), hrac.getY() - 19);
+                bludisko.get(poziciaHraca - 20).setPlayer(true);
+                bludisko.get(poziciaHraca).setPlayer(false);
+                poziciaHraca -= 20;
+            }
+        }
+        else if(e.getSource() == this.downButton){
+            if(!bludisko.get(poziciaHraca + 20).isWall()){
+                this.hrac.setLocation(hrac.getX(), hrac.getY() + 19);
+                bludisko.get(poziciaHraca + 20).setPlayer(true);
+                bludisko.get(poziciaHraca).setPlayer(false);
+                poziciaHraca += 20;
+            }
+        }
+        else if(e.getSource() == this.leftButton){
+            if(!bludisko.get(poziciaHraca - 1).isWall()){
+                this.hrac.setLocation(hrac.getX() - 20, hrac.getY());
+                bludisko.get(poziciaHraca - 1).setPlayer(true);
+                bludisko.get(poziciaHraca).setPlayer(false);
+                poziciaHraca -= 1;
+            }
+        }
+        else if(e.getSource() == this.rightButton){
+            if(!bludisko.get(poziciaHraca + 1).isWall()) {
+                this.hrac.setLocation(hrac.getX() + 20, hrac.getY());
+                bludisko.get(poziciaHraca + 1).setPlayer(true);
+                bludisko.get(poziciaHraca).setPlayer(false);
+                poziciaHraca += 1;
+            }
+        }
     }
 }
 
